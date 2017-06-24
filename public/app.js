@@ -1,7 +1,7 @@
 function init() {
   gapi.client.setApiKey("AIzaSyD0mQQQdzI4o2DjRhcv2gpAhFDva4Z4uNU");
   gapi.client.load("youtube","v3", () => {
-    console.log(gapi.client.youtube)
+    // console.log(gapi.client.youtube)
   })
 }
 
@@ -10,7 +10,7 @@ function init() {
     e.preventDefault();
     const results = document.getElementById('results');
     
-    // while(results.hasChildNodes) results.removeChild(results.lastChild)
+    while(results.hasChildNodes()) results.removeChild(results.firstChild)
 
     var request = gapi.client.youtube.search.list({
          part: "snippet",
@@ -23,15 +23,15 @@ function init() {
     }); 
 
     request.execute(response => {
-      console.log(JSON.stringify(response.result))
+      // console.log(JSON.stringify(response.result))
       response.result.items.forEach(function(element) {
-        const hOne = document.createElement('h3');
-        hOne.textContent = element.snippet.title;
+        // const hOne = document.createElement('h3');
+        // hOne.textContent = element.snippet.title;
         const iframe =document.createElement('iframe')
         iframe.src="//www.youtube.com/embed/" + element.id.videoId;
-        console.log(iframe.src)
+        // console.log(iframe.src)
         const box = document.createElement('div');
-        box.appendChild(hOne);
+        // box.appendChild(hOne);
         box.appendChild(iframe);
         results.appendChild(box)
 
